@@ -10,7 +10,8 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        // Spring Security 7 removed csrf().disable(); the lambda DSL keeps the same behaviour.
+        http.csrf(csrf -> csrf.disable());
         return http.build();
     }
 }
